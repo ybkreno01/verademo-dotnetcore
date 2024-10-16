@@ -49,11 +49,10 @@ jobs:
     - name: Run Veracode Static Pipeline Scanner
       continue-on-error: false
       run: >
-       java -jar pipeline-scan.jar --veracode_api_id "${{secrets.VERACODE_API_ID}}" --veracode_api_key "${{secrets.VERACODE_API_KEY}}" --file publish.zip --summary_output true --project_name VeraDemo-DotNetCore
-#       java -jar pipeline-scan.jar --veracode_api_id "${{secrets.VERACODE_API_ID}}" --veracode_api_key "${{secrets.VERACODE_API_KEY}}" |
-#       --file publish.zip
-#       --summary_output true
-#       --project_name VeraDemo-DotNetCore
+       java -jar pipeline-scan.jar --veracode_api_id "${{secrets.VERACODE_API_ID}}" --veracode_api_key "${{secrets.VERACODE_API_KEY}}" |
+       --file publish.zip
+       --summary_output true
+       --project_name VeraDemo-DotNetCore
   
 
 # Artifact the results for later use
