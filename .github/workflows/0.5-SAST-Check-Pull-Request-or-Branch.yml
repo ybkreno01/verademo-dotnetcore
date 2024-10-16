@@ -38,16 +38,25 @@ jobs:
       continue-on-error: false
       run: |
         java -jar pipeline-scan.jar --veracode_api_id "${{secrets.VERACODE_API_ID}}" --veracode_api_key "${{secrets.VERACODE_API_KEY}}" --file publish.zip --summary_output true --project_name VeraDemo-DotNetCore
-
 # Artifact the results for later use
-    - name: Archive Results.json & Results.txt from Veracode Static Pipeline Scanner
+    - name: Archive Results from Veracode Static Pipeline Scanner
       uses: actions/upload-artifact@v3.1.0
       with:
-        # Artifact name
+      # Artifact name
         name: Pipeline Scanner Results
-        path: results.*
-    - name: Show results.txt
-      run: |
-        echo "Resultados del escaneo:"
-        cat results.txt
+        path: |
+           ./results/results.txt
+           ./results/results.json
+
+# Artifact the results for later use
+#    - name: Archive Results.json & Results.txt from Veracode Static Pipeline Scanner
+#      uses: actions/upload-artifact@v3.1.0
+#      with:
+#        # Artifact name
+#        name: Pipeline Scanner Results
+#        path: results.*
+#    - name: Show results.txt
+#      run: |
+#        echo "Resultados del escaneo:"
+#        cat results.txt
 
