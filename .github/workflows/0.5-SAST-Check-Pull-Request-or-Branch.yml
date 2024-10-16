@@ -46,3 +46,8 @@ jobs:
         # Artifact name
         name: Pipeline Scanner Results
         path: results.*
+    - name: Show results.txt
+      run: |
+        echo "Resultados del escaneo:"
+        cat results.txt
+
