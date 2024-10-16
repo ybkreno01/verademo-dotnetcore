@@ -27,19 +27,20 @@ jobs:
         unzip -o veracode.zip
   
     - name: Run Veracode Static Pipeline Scanner
-      run: >
-        java -jar pipeline-scan.jar -vid "${{ secrets.VERACODE_API_ID }}" -vkey "${{ secrets.VERACODE_API_KEY }}" -f publish.zip -sf ./results/results.txt -p VeraDemo-DotNetCore
-
-    # Check for results files
-    - name: Check for results files
+      id: veracode_scan
       run: |
+        java -jar pipeline-scan.jar -vid "${{ secrets.VERACODE_API_ID }}" -vkey "${{ secrets.VERACODE_API_KEY }}" -f publish.zip -sf ./results/results.txt -p VeraDemo-DotNetCore
+        echo "Output:"
+        cat ./results/results.txt || echo "Results file not found or empty."
+
+    - name: List Results Directory
+      run: |
+        echo "Listing files in ./results:"
         ls -l ./results
 
-    # Artifact the results for later use
     - name: Archive Results from Veracode Static Pipeline Scanner
       uses: actions/upload-artifact@v3.1.0
       with:
         name: Pipeline Scanner Results
         path: |
           ./results/results.txt
-          ./results/results.json
