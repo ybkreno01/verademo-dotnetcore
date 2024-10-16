@@ -1,4 +1,4 @@
-name: .5-SAST-Check-Pull-Request-or-Branch1
+name: .5-SAST-Check-Pull-Request-or-Branch
 
 # This workflow will checkout the code, build the DotNet app, create an artifact from the BIN folder, and scan with the Veracode Static Pipeline Scanner.
 # For best scan results, we are using a Windows-2022 image to build the .Net code.
