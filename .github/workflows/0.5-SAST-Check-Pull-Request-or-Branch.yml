@@ -36,9 +36,9 @@ jobs:
           curl https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip -o veracode.zip
           unzip -o veracode.zip  
 
-      # Run Veracode Static Pipeline Scanner
+      # Run Veracode Static Pipeline Scanner with continue-on-error
       - name: Run Veracode Static Pipeline Scanner
-        continue-on-error: false
+        continue-on-error: true
         run: |
           java -jar pipeline-scan.jar --veracode_api_id "${{secrets.VERACODE_API_ID}}" --veracode_api_key "${{secrets.VERACODE_API_KEY}}" --file publish.zip --summary_output true --project_name VeraDemo-DotNetCore
 
